@@ -73,8 +73,9 @@ jobs:
       - name: Startup
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ vars.EC2_HOST }}
-          username: ${{ vars.EC2_USER }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
           script: |
             sudo systemctl restart project-drasil
