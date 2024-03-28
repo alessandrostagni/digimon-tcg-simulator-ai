@@ -66,8 +66,9 @@ jobs:
           SOURCE: backend/target
 
   startup:
-    name: Deploy to EC2
+    name: Start service
     runs-on: ubuntu-latest
+    needs: deploy
     steps:
       - uses: actions/checkout@v2
       - name: Startup
@@ -76,4 +77,4 @@ jobs:
             HOSTNAME: ${{ vars.EC2_HOST }}
             USER_NAME: ${{ vars.EC2_USER }}
         run: |
-          sudo systemctl restart project-drasil.service
+          sudo systemctl restart project-drasil
